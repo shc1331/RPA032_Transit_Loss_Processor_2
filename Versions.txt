@@ -1,0 +1,8 @@
+Dependencies:
+  Runs invoked from ZaleTicketLoadQ (EmailReqs)
+  "C:\xUipath\Env_Zale_JPP_ProcessQ.csv"
+  Starts job from Env file:
+~
+ Version 2018.4.5 Testing
+~
+Versions:
