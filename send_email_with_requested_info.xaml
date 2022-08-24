@@ -7,10 +7,10 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1016.8,3161.6</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1016.8,3165.6</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>send_email_with_requested_info_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="56">
+    <scg:List x:TypeArguments="x:String" Capacity="58">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -40,10 +40,11 @@
       <x:String>System.ComponentModel</x:String>
       <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
       <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>Microsoft.Activities.Extensions.Statements</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="26">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="54">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -70,6 +71,8 @@
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.Activities.Extensions</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -78,7 +81,7 @@
       <x:Boolean x:Key="ShouldExpandAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="send_email_with_requested_info" sap:VirtualizedContainerService.HintSize="1027.2,3096.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="send_email_with_requested_info" sap:VirtualizedContainerService.HintSize="1027.2,3100.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="error_message">
         <Variable.Default>
@@ -87,6 +90,7 @@
       </Variable>
       <Variable x:TypeArguments="x:Boolean" Default="True" Name="sender_is_valid" />
       <Variable x:TypeArguments="x:Boolean" Default="True" Name="receiver_is_valid" />
+      <Variable x:TypeArguments="x:String" Name="zales_store_lookup" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -94,7 +98,7 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="985.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Trace" Message="[&quot;this is the sender location: &quot; + in_TransactionItem.SpecificContent(&quot;Sender Loc&quot;).ToString]" />
-    <Sequence sap:VirtualizedContainerService.HintSize="985.6,2871.2" sap2010:WorkflowViewState.IdRef="Sequence_6">
+    <Sequence sap:VirtualizedContainerService.HintSize="985.6,3124.8" sap2010:WorkflowViewState.IdRef="Sequence_6">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -233,25 +237,46 @@
           </If>
         </If.Else>
       </If>
-      <If Condition="[sender_is_valid = True And receiver_is_valid = False]" sap:VirtualizedContainerService.HintSize="944,687.2" sap2010:WorkflowViewState.IdRef="If_14">
+      <If Condition="[sender_is_valid = True And receiver_is_valid = False]" sap:VirtualizedContainerService.HintSize="944,940.8" sap2010:WorkflowViewState.IdRef="If_14">
         <If.Then>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416.8,432" sap2010:WorkflowViewState.IdRef="Sequence_63">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416.8,685.6" sap2010:WorkflowViewState.IdRef="Sequence_63">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="375.2,339.2" sap2010:WorkflowViewState.IdRef="Sequence_65">
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="375.2,592.8" sap2010:WorkflowViewState.IdRef="Sequence_65">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Trace" Message="[&quot;will send email to ST&quot; + in_TransactionItem.SpecificContent(&quot;Sender Loc&quot;).ToString + &quot;@mail.sterling.com non-padded&quot;]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Trace" Message="[&quot;will use the following store for lookup: &quot; + in_TransactionItem.SpecificContent(&quot;Sender Loc&quot;).ToString]" />
+              <Assign DisplayName="Assign - use this value as key in lookup table" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_37">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[zales_store_lookup]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[in_TransactionItem.SpecificContent("Sender Loc").ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Sequence workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="email_lookup.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_email_address">
+                    <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="store_number_email" />
+                  </OutArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_master_file_path">
+                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Store_Lookup_Email_Path&quot;).ToString" />
+                  </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_zales_store_lookup">
+                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="zales_store_lookup" />
+                  </InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
               <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke email_store workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="email_store.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
                   <InArgument x:TypeArguments="x:String" x:Key="store_number">
-                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem.SpecificContent(&quot;Sender Loc&quot;).ToString" />
+                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="zales_store_lookup" />
                   </InArgument>
                   <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
                     <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
@@ -277,25 +302,52 @@
                   <InOutArgument x:TypeArguments="x:String" x:Key="store_number_email">
                     <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="store_number_email" />
                   </InOutArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="incident_no">
+                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem.SpecificContent(&quot;Incident No&quot;).ToString" />
+                  </InArgument>
                 </ui:InvokeWorkflowFile.Arguments>
               </ui:InvokeWorkflowFile>
             </Sequence>
           </Sequence>
         </If.Then>
         <If.Else>
-          <If Condition="[sender_is_valid = False And receiver_is_valid = True]" sap:VirtualizedContainerService.HintSize="483.2,528" sap2010:WorkflowViewState.IdRef="If_13">
+          <If Condition="[sender_is_valid = False And receiver_is_valid = True]" sap:VirtualizedContainerService.HintSize="483.2,781.6" sap2010:WorkflowViewState.IdRef="If_13">
             <If.Then>
-              <Sequence sap:VirtualizedContainerService.HintSize="375.2,339.2" sap2010:WorkflowViewState.IdRef="Sequence_68">
+              <Sequence sap:VirtualizedContainerService.HintSize="375.2,592.8" sap2010:WorkflowViewState.IdRef="Sequence_68">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:String" Name="variable1" />
+                </Sequence.Variables>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Trace" Message="[&quot;will send email to ST&quot; + in_TransactionItem.SpecificContent(&quot;Receiver Loc&quot;).ToString + &quot;@mail.sterling.com non-padded&quot;]" />
-                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke email_store workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="email_store.xaml">
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Trace" Message="[&quot;will use the following store for lookup: &quot; + in_TransactionItem.SpecificContent(&quot;Receiver Loc&quot;).ToString]" />
+                <Assign DisplayName="Assign - use this value as key in lookup" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_38">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[zales_store_lookup]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[in_TransactionItem.SpecificContent("Receiver Loc").ToString]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Sequence workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="email_lookup.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <OutArgument x:TypeArguments="x:String" x:Key="out_email_address">
+                      <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="store_number_email" />
+                    </OutArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_master_file_path">
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Store_Lookup_Email_Path&quot;).ToString" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_zales_store_lookup">
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="zales_store_lookup" />
+                    </InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke email_store workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="email_store.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
                     <InArgument x:TypeArguments="x:String" x:Key="store_number">
-                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem.SpecificContent(&quot;Receiver Loc&quot;).ToString" />
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="zales_store_lookup" />
                     </InArgument>
                     <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
                       <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
@@ -321,6 +373,9 @@
                     <InOutArgument x:TypeArguments="x:String" x:Key="store_number_email">
                       <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="store_number_email" />
                     </InOutArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="incident_no">
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem.SpecificContent(&quot;Incident No&quot;).ToString" />
+                    </InArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
               </Sequence>
