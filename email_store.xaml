@@ -14,7 +14,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>952.8,1265.6</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>956.8,1265.6</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>email_store_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="28">
@@ -84,11 +84,7 @@
       <Variable x:TypeArguments="x:String" Name="email_subject" />
       <Variable x:TypeArguments="x:String" Name="recipient" />
       <Variable x:TypeArguments="x:String" Name="email_body" />
-      <Variable x:TypeArguments="x:String" Name="test_recipient">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:String">andrew.chen@signetjewelers.com</Literal>
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:String" Default="andrew.chen@signetjewelers.com" Name="test_recipient" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -131,15 +127,20 @@
         <InArgument x:TypeArguments="x:String">[in_Config("Email_Body").ToString.Replace("@TL_CASE_ID@", case_number).Replace("@TRACKING_NUMBER@", tracking_number).Replace("@SHIP_DATE@", ship_date).Replace("@SENDER_LOCATION@", sender_location).Replace("@RECEIVER_LOCATION@", receiver_location).Replace("@TOTAL_QUANTITY@", total_quantity).Replace("@INCIDENT_NO@", incident_no)]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="435.2,317.6" sap2010:WorkflowViewState.IdRef="CommentOut_5">
+    <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Body="[email_body]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="435.2,146.4" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" Subject="[email_subject]" To="[store_number_email]">
+      <ui:SendOutlookMail.Files>
+        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+      </ui:SendOutlookMail.Files>
+    </ui:SendOutlookMail>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="435.2,317.6" sap2010:WorkflowViewState.IdRef="CommentOut_6">
       <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="375.2,239.2" sap2010:WorkflowViewState.IdRef="Sequence_15">
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="375.2,239.2" sap2010:WorkflowViewState.IdRef="Sequence_16">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Body="[email_body]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="333.6,146.4" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" Subject="[email_subject]" To="[store_number_email]">
+          <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Body="[email_body]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="333.6,146.4" sap2010:WorkflowViewState.IdRef="SendOutlookMail_2" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" Subject="[email_subject]" To="[test_recipient]">
             <ui:SendOutlookMail.Files>
               <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
             </ui:SendOutlookMail.Files>
@@ -147,10 +148,5 @@
         </Sequence>
       </ui:CommentOut.Body>
     </ui:CommentOut>
-    <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Body="[email_body]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="435.2,146.4" sap2010:WorkflowViewState.IdRef="SendOutlookMail_2" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" Subject="[email_subject]" To="[test_recipient]">
-      <ui:SendOutlookMail.Files>
-        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
-      </ui:SendOutlookMail.Files>
-    </ui:SendOutlookMail>
   </Sequence>
 </Activity>
