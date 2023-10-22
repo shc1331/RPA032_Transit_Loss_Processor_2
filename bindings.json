@@ -1,0 +1,81 @@
+{
+  "version": "1.0",
+  "resources": [
+    {
+      "resource": "queue",
+      "metadata": {
+        "name": {
+          "defaultValue": "orchestrator_queue",
+          "isExpression": true
+        },
+        "folderPath": {
+          "isExpression": true
+        }
+      }
+    },
+    {
+      "resource": "queue",
+      "metadata": {
+        "name": {
+          "defaultValue": "logqueue",
+          "isExpression": true
+        },
+        "folderPath": {
+          "isExpression": true
+        }
+      }
+    },
+    {
+      "resource": "queue",
+      "metadata": {
+        "folderPath": {
+          "isExpression": true
+        }
+      }
+    },
+    {
+      "resource": "queue",
+      "metadata": {
+        "name": {
+          "defaultValue": "in_Config(\"Queue_Name\").ToString",
+          "isExpression": false
+        },
+        "folderPath": {
+          "isExpression": true
+        }
+      }
+    },
+    {
+      "resource": "asset",
+      "metadata": {
+        "name": {
+          "defaultValue": "NASRoot_Path",
+          "isExpression": false
+        },
+        "folderPath": {
+          "isExpression": true
+        }
+      }
+    },
+    {
+      "resource": "asset",
+      "metadata": {
+        "name": {
+          "defaultValue": "NASRoot_Path",
+          "isExpression": false
+        },
+        "folderPath": {
+          "isExpression": true
+        }
+      }
+    },
+    {
+      "resource": "queue",
+      "metadata": {
+        "folderPath": {
+          "isExpression": true
+        }
+      }
+    }
+  ]
+}
